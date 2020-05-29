@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+
+    deblurring-database:
+        image: postgres:latest
+        environment:
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: deblurrer
+        ports:
+            - 6543:5432
+        container_name: deblurring-database
+
+    deblurring-serving:
+        environment:
+            - MODEL_NAME=deblurrer
+            - PORT=8501
+        build: ./backend   
+        image: deblurring-serving:latest
+        ports:
+            - 8501:8501
+        container_name: deblurring-serving
+
+    deblurring-backend:
+        build: ./backend
+        image: deblurring-backend:latest
+        ports:
+            - 8000:8000
+        volumes:
+            - ./backend:/deep-deblurring-backend
+        depends_on:
+            - deblurring-database
+        container_name: deblurring-backend
