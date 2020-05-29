@@ -4,3 +4,6 @@
 [submodule "backend"]
 	path = backend
 	url = https://github.com/ElPapi42/deep-deblurring-backend
+[submodule "serving"]
+	path = serving
+	url = https://github.com/ElPapi42/deep-deblurring-serving
