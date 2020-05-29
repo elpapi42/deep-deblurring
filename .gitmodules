@@ -1,3 +1,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/ElPapi42/deep-deblurring-frontend
+[submodule "backend"]
+	path = backend
+	url = https://github.com/ElPapi42/deep-deblurring-backend
