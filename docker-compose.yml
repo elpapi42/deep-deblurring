@@ -31,3 +31,15 @@ services:
         depends_on:
             - deblurring-database
         container_name: deblurring-backend
+
+    deblurring-frontend:
+        build: ./frontend
+        image: deblurring-frontend:latest
+        ports:
+            - 8081:8080
+        volumes:
+            - ./frontend:/deep-deblurring-frontend
+        depends_on:
+            - deblurring-backend
+            - deblurring-serving
+        container_name: deblurring-frontend
