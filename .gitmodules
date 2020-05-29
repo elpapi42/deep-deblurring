@@ -7,3 +7,6 @@
 [submodule "serving"]
 	path = serving
 	url = https://github.com/ElPapi42/deep-deblurring-serving
+[submodule "model"]
+	path = model
+	url = https://github.com/ElPapi42/deep-deblurring-model
