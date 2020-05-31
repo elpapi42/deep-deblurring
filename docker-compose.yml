@@ -1,6 +1,14 @@
 version: "3.7"
 services:
 
+    # This redis is setup without auth
+    # this is just for local testing
+    deblurring-redis:
+        image: redis:latest
+        ports:
+            - 7001:6379
+        container_name: deblurring-redis
+
     deblurring-database:
         image: postgres:latest
         environment:
@@ -15,7 +23,7 @@ services:
         environment:
             - MODEL_NAME=deblurrer
             - PORT=8501
-        build: ./backend   
+        build: ./serving
         image: deblurring-serving:latest
         ports:
             - 8501:8501
@@ -30,6 +38,8 @@ services:
             - ./backend:/deep-deblurring-backend
         depends_on:
             - deblurring-database
+            - deblurring-redis
+            - deblurring-serving
         container_name: deblurring-backend
 
     deblurring-frontend:
